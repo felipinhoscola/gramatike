@@ -7,15 +7,15 @@ i18n.use(initReactI18next).init({
     en: {
       translation: {
         appName: "Gramatike",
-        titleHomePage: "Home Page",
-        titleSecondPage: "Second Page",
+        sendMessageButton: "Send",
+        textAreaPlaceholder: "Your text goes here...",
       },
     },
     "pt-BR": {
       translation: {
         appName: "Gramatike",
-        titleHomePage: "Página Inicial",
-        titleSecondPage: "Segunda Página",
+        sendMessageButton: "Enviar",
+        textAreaPlaceholder: "Seu texto vai aqui...",
       },
     },
   },

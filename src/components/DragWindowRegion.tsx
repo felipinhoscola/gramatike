@@ -1,6 +1,6 @@
 import {
   closeWindow,
-  maximizeWindow,
+  // maximizeWindow,
   minimizeWindow,
 } from "@/helpers/window_helpers";
 import React, { type ReactNode } from "react";

@@ -11,7 +11,9 @@ export default function BaseLayout({
     <>
       <DragWindowRegion title="Gramatike" />
       {/* <NavigationMenu /> */}
-      <main className="h-screen p-2 pb-20">{children}</main>
+      <main className="p-2" style={{ height: "205px" }}>
+        {children}
+      </main>
     </>
   );
 }

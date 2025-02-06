@@ -24,6 +24,7 @@ function createWindow() {
     },
     titleBarStyle: "hidden",
     resizable: false,
+    maximizable: false,
   });
   registerListeners(mainWindow);
 
