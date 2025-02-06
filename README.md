@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # electron-shadcn
 
 Electron in all its glory. Everything you will need to develop your beautiful desktop application.
@@ -145,3 +146,7 @@ npm run start
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/LuanRoger/electron-shadcn/blob/main/LICENSE) file for details.
+=======
+# gramatike
+nothing
+>>>>>>> origin/main
