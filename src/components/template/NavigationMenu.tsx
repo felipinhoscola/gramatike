@@ -13,19 +13,12 @@ export default function NavigationMenu() {
   const { t } = useTranslation();
 
   return (
-    <NavigationMenuBase className="px-2 font-mono text-muted-foreground">
+    <NavigationMenuBase className="text-muted-foreground px-2 font-mono">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link to="/">
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               {t("titleHomePage")}
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link to="/second-page">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              {t("titleSecondPage")}
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

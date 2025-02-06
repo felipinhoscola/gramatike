@@ -14,7 +14,7 @@ export default function DragWindowRegion({ title }: DragWindowRegionProps) {
     <div className="flex w-screen items-stretch justify-between">
       <div className="draglayer w-full">
         {title && (
-          <div className="flex flex-1 select-none whitespace-nowrap p-2 text-xs text-gray-400">
+          <div className="flex flex-1 p-2 text-xs whitespace-nowrap text-gray-400 select-none">
             {title}
           </div>
         )}
@@ -43,7 +43,7 @@ function WindowButtons() {
           <rect fill="currentColor" width="10" height="1" x="1" y="6"></rect>
         </svg>
       </button>
-      <button
+      {/* <button
         title="Maximize"
         type="button"
         className="p-2 hover:bg-slate-300"
@@ -65,7 +65,7 @@ function WindowButtons() {
             stroke="currentColor"
           ></rect>
         </svg>
-      </button>
+      </button> */}
       <button
         type="button"
         title="Close"
