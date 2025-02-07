@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "App para te ajudar na ortografia, gramática e melhora de texto.",
   "main": ".vite/build/main.js",
+  "author": "Felipe Scola <felipescolacontato@gmail.com>",
   "private": true,
   "scripts": {
     "start": "electron-forge start",

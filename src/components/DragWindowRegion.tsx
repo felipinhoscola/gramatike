@@ -31,7 +31,7 @@ function WindowButtons() {
         title="Minimize"
         type="button"
         className="p-2 hover:bg-slate-300"
-        onClick={minimizeWindow}
+        onClick={closeWindow}
       >
         <svg
           aria-hidden="true"
