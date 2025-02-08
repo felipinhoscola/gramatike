@@ -16,6 +16,7 @@ export default defineConfig((env) => {
     base: "./",
     build: {
       outDir: `.vite/renderer/${name}`,
+      assetsInclude: ["**/*.png", "**/*.ico"],
     },
     plugins: [
       pluginExposeRenderer(name),

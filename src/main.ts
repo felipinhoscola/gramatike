@@ -47,7 +47,8 @@ function createWindow() {
     width: 480,
     height: 240,
     webPreferences: {
-      devTools: inDevelopment,
+      // devTools: inDevelopment,
+      devTools: true,
       contextIsolation: true,
       nodeIntegration: true,
       nodeIntegrationInSubFrames: false,
@@ -58,24 +59,48 @@ function createWindow() {
     maximizable: false,
   });
 
-  mainWindow.setIcon(path.join(__dirname, "../../images/icon.png"));
+  mainWindow.webContents.openDevTools({ mode: "detach" });
+
+  try {
+    const iconPath = path.join(__dirname, "../assets/images/icon.png");
+    console.log("Tentando carregar ícone:", iconPath);
+    console.log("Ícone existe:", require("fs").existsSync(iconPath));
+    mainWindow.setIcon(iconPath);
+  } catch (error) {
+    console.error("Erro ao carregar ícone:", error);
+  }
+
+  globalShortcut.register("CommandOrControl+Shift+I", () => {
+    mainWindow?.webContents.toggleDevTools();
+  });
+
   registerListeners(mainWindow);
   mainWindow.on("close", (event) => {
     event.preventDefault();
     mainWindow?.hide();
   });
 
-  if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
-  } else {
-    mainWindow
-      .loadFile(
-        path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
-      )
-      .catch((err) => {
-        console.error("Failed to load app:", err);
-      });
-  }
+  // if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
+  //   console.log("Loading URL:", MAIN_WINDOW_VITE_DEV_SERVER_URL);
+  //   mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
+  // } else {
+  //   console.log(
+  //     "Loading file from:",
+  //     path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
+  //   );
+  //   mainWindow
+  //     .loadFile(
+  //       path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
+  //     )
+  //     .catch((err) => {
+  //       console.error("Failed to load app:", err);
+  //     });
+  // }
+  mainWindow.loadURL(
+    app.isPackaged
+      ? `file://${__dirname}/../renderer/main_window/index.html`
+      : MAIN_WINDOW_VITE_DEV_SERVER_URL,
+  );
 
   mainWindow.webContents.on("did-fail-load", (event, code, desc) => {
     console.error("Failed to load:", code, desc);
@@ -95,7 +120,7 @@ async function initiateApp() {
       }
     });
     //Tray Session
-    const iconPath = path.join(__dirname, "../../images/icon.ico");
+    const iconPath = path.join(__dirname, "../assets/images/icon.ico");
     tray = new Tray(iconPath);
 
     tray.setToolTip("Gramatike");
@@ -134,7 +159,6 @@ async function installExtensions() {
 app.whenReady().then(createWindow).then(installExtensions).then(initiateApp);
 
 app.on("window-all-closed", () => {});
-
 // app.on("window-all-closed", (event) => {
 //   //commented because the app is a tray app, and if the user want to close, tray has a menu for quit app
 //   // if (process.platform !== "darwin") {
