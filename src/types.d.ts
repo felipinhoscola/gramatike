@@ -18,7 +18,12 @@ interface ElectronWindow {
   close: () => Promise<void>;
 }
 
+interface ProcessText {
+  send: (text: string) => Promise<string>;
+}
+
 declare interface Window {
   themeMode: ThemeModeContext;
   electronWindow: ElectronWindow;
+  processText: ProcessText;
 }

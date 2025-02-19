@@ -15,7 +15,10 @@ import {
   installExtension,
   REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";
+import dotenv from "dotenv";
 
+//TODO: nao terei envs salvas, isso é apenas para desenvolvimento enquanto nao crio o settings da forma que pensei, armazenando tudo em json, ja que o app vai ficar por conta do usuario mesmo
+dotenv.config();
 const inDevelopment = process.env.NODE_ENV === "development";
 
 // if (require("electron-squirrel-startup")) {
@@ -59,11 +62,10 @@ function createWindow() {
     maximizable: false,
   });
 
-  mainWindow.webContents.openDevTools({ mode: "detach" });
-
   try {
-    const iconPath = path.join(__dirname, "../assets/images/icon.png");
-    console.log("Tentando carregar ícone:", iconPath);
+    const iconPath = app.isPackaged
+      ? path.join(__dirname, "../assets/images/icon.png")
+      : path.join(__dirname, "../../src/assets/images/icon.png");
     console.log("Ícone existe:", require("fs").existsSync(iconPath));
     mainWindow.setIcon(iconPath);
   } catch (error) {
@@ -120,7 +122,11 @@ async function initiateApp() {
       }
     });
     //Tray Session
-    const iconPath = path.join(__dirname, "../assets/images/icon.ico");
+    const iconPath = app.isPackaged
+      ? path.join(__dirname, "../assets/images/icon.ico")
+      : path.join(__dirname, "../../src/assets/images/icon.ico");
+
+    console.log("iconPath", iconPath);
     tray = new Tray(iconPath);
 
     tray.setToolTip("Gramatike");
